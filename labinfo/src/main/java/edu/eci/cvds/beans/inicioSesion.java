@@ -15,21 +15,20 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 // Clases
-//import com.registerLab.servicios.ServiciosECILabImpl;
+//import edu.eci.cvds.servicios.ServiciosECILabImpl;
+import edu.eci.cvds.entities.Usuario;
 
 /**
 * Gestionamos el inicio de sesión del usuario
 */
 @ManagedBean(name = "inicioSesionBean")
-public class InicioSesion extends baseRegistroLabBean
+public class InicioSesion extends BaseRegistroLabBean
 {
 	private String correo;
 	private String contrasena;
 	private Usuario usuario;
 	private Injector injector;
 	//private serviciosECILabImpl servicios; //Variable a revisar y clase a crear
-	private static HttpSession sesionHttp;
-	private static Boolean sesionActiva;
 	
 	/**
 	* Constructor para la gestión de inicio de sesión
@@ -103,7 +102,7 @@ public class InicioSesion extends baseRegistroLabBean
 			
 			if(usuario == null)
 			{
-				usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
+				//usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
 			}
 		} catch(Exception e)
 		{
@@ -130,7 +129,7 @@ public class InicioSesion extends baseRegistroLabBean
 		}
 		if(usuario == null && SecurityUtils.getSubject().getPrincipal() != null)
 		{
-			usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
+			//usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
 		}
 		return usuario;
 	}
@@ -144,7 +143,7 @@ public class InicioSesion extends baseRegistroLabBean
 		{
 			SecurityUtils.getSubject().logout();
 			usuario = null;
-			FacesContext.getCurrentInstance().getExternalContext.redirect("login.xhtml"); //Falta crear el xhtml
+			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml"); //Falta crear el xhtml
 		} catch(Exception e)
 		{
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.registerLab.entities;
+package edu.eci.cvds.entities;
 
 import java.io.Serializable;
 
@@ -110,9 +110,9 @@ public class Usuario implements Serializable
 	* Obtener la contraseña del usuario ingresado al sistema
 	* @return contrasena
 	*/
-	public String getContra()
+	public String getContrasena()
 	{
-		return contra;
+		return contrasena;
 	}
 	
 	/**
