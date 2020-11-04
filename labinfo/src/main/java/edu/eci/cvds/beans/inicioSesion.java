@@ -1,105 +1,154 @@
 package edu.eci.cvds.beans;
 
-import java.util.Enumeration;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
+import com.google.inject.Injector;
+// Manejo de conexión web 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+// Seguridad
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.subject.Subject;
+// Clases
+//import com.registerLab.servicios.ServiciosECILabImpl;
 
 /**
 * Gestionamos el inicio de sesión del usuario
 */
-public class inicioSesion
+@ManagedBean(name = "inicioSesionBean")
+public class InicioSesion extends baseRegistroLabBean
 {
+	private String correo;
+	private String contrasena;
+	private Usuario usuario;
+	private Injector injector;
+	//private serviciosECILabImpl servicios; //Variable a revisar y clase a crear
 	private static HttpSession sesionHttp;
 	private static Boolean sesionActiva;
 	
-	public static void inicioSesion(FacesContext fc)
+	/**
+	* Constructor para la gestión de inicio de sesión
+	*/
+	public InicioSesion()
 	{
-		sesionHttp = (HttpSession) fc.getExternalContext().getSession(false);
+		injector = super.getInjector();
+		//servicios = injector.getInstance(serviciosECILabImpl.class);
 	}
 	
 	/**
-	* Iniciamos sesión y gestionamos los datos para el inicio de sesión
-	* @param nombre
-	* @param objeto
+	* Establecemos el correo del usuario
+	* @param correo
 	*/
-	public static void setDatosSesion(String nombre, Object objeto)
+	public void setCorreo(String correo)
 	{
-		try{
-			if(sesionHttp.getId() != null && !sesionHttp.getId().isEmpty())
-			{
-				sesionActiva = true;
-				sesionHttp.setAttribute(nombre, objeto);
-				sesionHttp.setAttribute("sesionActiva", sesionActiva);
-			}
-			else
-			{
-				sesionActiva = false;
-				sesionHttp.setAttribute("sesionActiva", sesionActiva);
-				throw new Exception("Error al iniciar sesión");
-			}
-		} catch(Exception e)
+		this.correo = correo;
+	}
+	
+	/**
+	* Establecemos la contraseña del usuario
+	* @param contrasena
+	*/
+	public void setContrasena(String contrasena)
+	{
+		this.contrasena = contrasena;
+	}
+	
+	/**
+	* Obtener el correo del usuario
+	* @return correo
+	*/
+	public String getCorreo()
+	{
+		try
 		{
-			sesionHttp.invalidate();
+			if(SecurityUtils.getSubject().getPrincipal() == null)
+			{
+				FacesContext.getCurrentInstance().getExternalContext().redirect("useradmin.xhtml"); //Falta crear el xhtml
+			}
+		} catch(IOException e)
+		{
 			e.printStackTrace();
 		}
+		return correo;
 	}
 	
-	/*
-	* Cerramos la sesión actual
+	/**
+	* Obtener la contraseña del usuario
+	* @return contrasena
 	*/
-	public static void cerrarSesion()
+	public String getContrasena()
 	{
-		Enumeration<String> atributos = null;
-		
-		try{
-			if(sesionHttp != null && sesionHttp.getId() != null && !sesionHttp.getId().isEmpty())
+		return contrasena;
+	}
+	
+	/**
+	* Iniciar sesión con el usuario
+	*/
+	public void iniciarSesion()
+	{
+		try
+		{
+			Subject usuarioActual = SecurityUtils.getSubject();
+			String hexadecimal = new Sha256Hash(contrasena).toHex();
+			System.out.println(hexadecimal);
+			UsernamePasswordToken token = new UsernamePasswordToken(correo, hexadecimal);
+			token.setRememberMe(true);
+			usuarioActual.login(token);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("useradmin.xhtml"); //Falta crear el xhtml
+			
+			if(usuario == null)
 			{
-				sesionActiva = false;
-				atributos = sesionHttp.getAttributeNames();
-				
-				while(atributos.hasMoreElements())
-				{
-					String atributo = atributos.nextElement();
-					sesionHttp.removeAttribute(atributo);
-				}
-				
-				sesionHttp.invalidate();
-			}
-			else
-			{
-				throw new Exception("Error al cerrar la sesión");
+				usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
 			}
 		} catch(Exception e)
 		{
-			throw new RuntimeException(e);
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Error", "Por favor revise sus credenciales, usuario o contraseña incorrectos"));
 		}
 	}
 	
 	/**
-	* Obtenemos los datos del usuario que se está autenticando
-	* @param dato
-	* @return objeto
+	* Obtener el usuario que está en la sesión
+	* @return usuario
 	*/
-	public static void getDatosSesion(String dato)
+	public Usuario getUsuario()
 	{
-		if(sesionHttp != null && sesionHttp.getId() != null && !sesionHttp.getId().isEmpty())
+		try 
 		{
-			sesionHttp.setAttribute("sesionActiva", sesionActiva);
+			if(SecurityUtils.getSubject().getPrincipal() == null)
+			{
+				FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml"); //Falta crear el xhtml
+			}
+		}catch(Exception e) 
+		{
+			e.printStackTrace();
 		}
+		if(usuario == null && SecurityUtils.getSubject().getPrincipal() != null)
+		{
+			usuario = servicios.getUsuario(SecurityUtils.getSubject().getPrincipal().toString());
+		}
+		return usuario;
 	}
-
-	/*
-	* Verificar el estado de la sesión dle usuario
-	* @return activo
+	
+	/**
+	* Cerrar seión iniciada por el usuario
 	*/
-	public static Boolean getEstadoSesion()
+	public void cerrarSesion()
 	{
-		boolean activo = false;
-		
-		if (sesionHttp != null && sesionHttp.getId() != null && !sesionHttp.getId().isEmpty() && sesionHttp.getAttribute("sesionActiva") != null) {
-            activo = Boolean.parseBoolean(sesionHttp.getAttribute("sesionActiva").toString());
-        }
-		
-		return activo;
+		try
+		{
+			SecurityUtils.getSubject().logout();
+			usuario = null;
+			FacesContext.getCurrentInstance().getExternalContext.redirect("login.xhtml"); //Falta crear el xhtml
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+		}	
 	}
+	
 }
