@@ -15,7 +15,7 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>faces/inicioSesion.xhtml</welcome-file>
+        <welcome-file>faces/pagina.xhtml</welcome-file>
     </welcome-file-list>
     <listener>
         <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
