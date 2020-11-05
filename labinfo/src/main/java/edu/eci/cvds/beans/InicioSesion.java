@@ -15,7 +15,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 // Clases
-//import edu.eci.cvds.servicios.ServiciosECILabImpl;
+import edu.eci.cvds.servicios.ServiciosECILabImpl;
 import edu.eci.cvds.entities.Usuario;
 
 /**
@@ -28,7 +28,7 @@ public class InicioSesion extends BaseRegistroLabBean
 	private String contrasena;
 	private Usuario usuario;
 	private Injector injector;
-	//private serviciosECILabImpl servicios; //Variable a revisar y clase a crear
+	private ServiciosECILabImpl servicios; //Variable a revisar y clase a crear
 	
 	/**
 	* Constructor para la gestión de inicio de sesión
@@ -67,7 +67,7 @@ public class InicioSesion extends BaseRegistroLabBean
 		{
 			if(SecurityUtils.getSubject().getPrincipal() == null)
 			{
-				FacesContext.getCurrentInstance().getExternalContext().redirect("useradmin.xhtml"); //Falta crear el xhtml
+				FacesContext.getCurrentInstance().getExternalContext().redirect("usuarioAdministrador.xhtml");
 			}
 		} catch(IOException e)
 		{
@@ -98,7 +98,7 @@ public class InicioSesion extends BaseRegistroLabBean
 			UsernamePasswordToken token = new UsernamePasswordToken(correo, hexadecimal);
 			token.setRememberMe(true);
 			usuarioActual.login(token);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("useradmin.xhtml"); //Falta crear el xhtml
+			FacesContext.getCurrentInstance().getExternalContext().redirect("usuarioAdministrador.xhtml");
 			
 			if(usuario == null)
 			{
@@ -121,7 +121,7 @@ public class InicioSesion extends BaseRegistroLabBean
 		{
 			if(SecurityUtils.getSubject().getPrincipal() == null)
 			{
-				FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml"); //Falta crear el xhtml
+				FacesContext.getCurrentInstance().getExternalContext().redirect("iniciarSesion.xhtml");
 			}
 		}catch(Exception e) 
 		{
@@ -143,7 +143,7 @@ public class InicioSesion extends BaseRegistroLabBean
 		{
 			SecurityUtils.getSubject().logout();
 			usuario = null;
-			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml"); //Falta crear el xhtml
+			FacesContext.getCurrentInstance().getExternalContext().redirect("iniciarSesion.xhtml");
 		} catch(Exception e)
 		{
 			e.printStackTrace();
