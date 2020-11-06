@@ -7,18 +7,19 @@
 		<h:head>
 			<title>Labinfo</title>
 			<link href="css/es.css" rel="stylesheet"/>
+			<script type="text/javascript" src="/js/main.js"></script>
 		</h:head>
 		<body>
 				
 				
 				
 				
-					<div class="contenedor-form">
-						<div class="botonCuenta">
-							<span style="color: white"> Crear Cuenta</span>
+					<div  id = "primero" class="contenedor-form">
+						<div id="hi" class="botonCuenta">
+							<span id="pr" style="color: white" onclick="ocultar()"> Crear Cuenta</span>
 						</div>
 						
-						<div class="formulario">
+						<div id="segundo" class="formulario">
 							<h2 style="color: white">Iniciar Sesión</h2>
 							<form action="#">
 								<input type="text" placeholder="Usuario" id="atributo"></input>
@@ -27,7 +28,10 @@
 							</form>
 						</div>
 						
-						<div class="formulario">
+						<div id ="tercero" class="formulario">
+							<div id="hi" class="botonVolver">
+								<span id="sg" style="color: white" onclick="mostrar()"> Volver</span>
+							</div>
 							<h2 style="color: white">Crea tu Cuenta</h2>
 							<form action="#">
 								<input type="text" placeholder="Usuario" id="registoUsuario"></input>
@@ -47,7 +51,8 @@
 
 						
 					</div>			
-				
+					
+					
 			
 					
 		</body>

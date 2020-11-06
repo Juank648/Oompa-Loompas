@@ -56,11 +56,35 @@ body{
 
 }
 
+.contenedor-form .botonVolver {
+	position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+    border-top: 2px solid #BD3232;
+    border-bottom: 2px solid #BD3232;
+    cursor: pointer;
+
+}
+
 .contenedor-form .botonCuenta span{
 	letter-spacing: 1px;
 }
 
 .contenedor-form .botonCuenta:hover {
+	border-top: 2px solid #0075d9;
+    border-bottom: 2px solid #0075d9;
+}
+
+.contenedor-form .botonVolver span{
+	letter-spacing: 1px;
+}
+
+.contenedor-form .botonVolver:hover {
 	border-top: 2px solid #0075d9;
     border-bottom: 2px solid #0075d9;
 }
