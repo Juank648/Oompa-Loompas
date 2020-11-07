@@ -18,7 +18,6 @@ function mostrar(){
 	
 }
 
-//document.getElementById("pr").click()=ocultar();
 
 
 

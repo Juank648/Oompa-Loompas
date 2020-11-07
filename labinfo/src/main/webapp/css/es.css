@@ -28,11 +28,19 @@ body{
     
 
 }
-
+.contenedor-form .formulario .avatar {
+	width: 116px;
+	height: 116px;
+	border-radius: 50%;
+	position: absolute;
+	top: -58px;
+	left: calc(50% - 58px);
+} 
 .contenedor-form {
 	position: relative;
+	top: 50px;
 	background: rgba(0,0,0,.7);
-	width: 100%;
+	width: 70%;
 	max-width: 500px;
 	margin: 48px auto;
 	
@@ -50,8 +58,8 @@ body{
     font-size: 12px;
     line-height: 25px;
     text-align: center;
-    border-top: 2px solid #BD3232;
-    border-bottom: 2px solid #BD3232;
+    border-top: 2px solid #026639;
+    border-bottom: 2px solid #026639;
     cursor: pointer;
 
 }
@@ -65,8 +73,8 @@ body{
     font-size: 12px;
     line-height: 25px;
     text-align: center;
-    border-top: 2px solid #BD3232;
-    border-bottom: 2px solid #BD3232;
+    border-top: 2px solid #026639;
+    border-bottom: 2px solid #026639;
     cursor: pointer;
 
 }
@@ -76,8 +84,8 @@ body{
 }
 
 .contenedor-form .botonCuenta:hover {
-	border-top: 2px solid #0075d9;
-    border-bottom: 2px solid #0075d9;
+	border-top: 2px solid #660202;
+    border-bottom: 2px solid #660202;
 }
 
 .contenedor-form .botonVolver span{
@@ -85,8 +93,8 @@ body{
 }
 
 .contenedor-form .botonVolver:hover {
-	border-top: 2px solid #0075d9;
-    border-bottom: 2px solid #0075d9;
+	border-top: 2px solid #660202;
+    border-bottom: 2px solid #660202;
 }
 
 .contenedor-form h2 {
@@ -106,7 +114,7 @@ body{
 	color: #fff;
 	border: none;
 	border-radius: 2px;
-	border-bottom: 4px solid #BD3232;
+	border-bottom: 4px solid #026639;
 	font-family: Roboto;
 	font-size: 14px;
 	font-weight: normal;
@@ -116,12 +124,12 @@ body{
 .contenedor-form input[type="text"]:focus,
 .contenedor-form input[type="password"]:focus,
 .contenedor-form input[type="email"]:focus {
-	border-bottom: 4px solid #0075d9;
+	border-bottom: 4px solid #660202;
 
 }
 
 .contenedor-form input[type="submit"] {
-	background: #BD3232;
+	background: #026639;
 	color: #fff;
 	border: none;
 	width: 100%;

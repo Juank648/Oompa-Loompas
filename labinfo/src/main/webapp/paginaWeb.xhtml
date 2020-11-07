@@ -10,50 +10,45 @@
 			<script type="text/javascript" src="/js/main.js"></script>
 		</h:head>
 		<body>
+			<div  id = "primero" class="contenedor-form">
 				
+				<div id="hi" class="botonCuenta">
+					<span id="pr" style="color: white" onclick="ocultar()"> Crear Cuenta</span>
+				</div>
 				
+				<div id="segundo" class="formulario">
+					<img class="avatar" src= "img/sistemas.png" alt="Logo de login"/>
+					<h2 style="color: white">Iniciar Sesión</h2>
+					<form action="#">
+						<input type="text" placeholder="Usuario" id="atributo"></input>
+						<input type="password" placeholder="Contraseña" id="contra"></input>
+						<input type="submit" value="Iniciar Sesión" id="boton"></input>
+					</form>
+				</div>
 				
-				
-					<div  id = "primero" class="contenedor-form">
-						<div id="hi" class="botonCuenta">
-							<span id="pr" style="color: white" onclick="ocultar()"> Crear Cuenta</span>
-						</div>
+				<div id ="tercero" class="formulario">
+					<img class="avatar" src= "img/sistemas.png" alt="Logo de login"/>
+					<div id="hi" class="botonVolver">
+						<span id="sg" style="color: white" onclick="mostrar()"> Volver</span>
+					</div>
+					<h2 style="color: white">Crea tu Cuenta</h2>
+					<form action="#">
+						<input type="text" placeholder="Usuario" id="registoUsuario"></input>
 						
-						<div id="segundo" class="formulario">
-							<h2 style="color: white">Iniciar Sesión</h2>
-							<form action="#">
-								<input type="text" placeholder="Usuario" id="atributo"></input>
-								<input type="password" placeholder="Contraseña" id="contra"></input>
-								<input type="submit" value="Iniciar Sesión" id="boton"></input>
-							</form>
-						</div>
+						<input type="password" placeholder="Contraseña" id="registoContra"></input>
 						
-						<div id ="tercero" class="formulario">
-							<div id="hi" class="botonVolver">
-								<span id="sg" style="color: white" onclick="mostrar()"> Volver</span>
-							</div>
-							<h2 style="color: white">Crea tu Cuenta</h2>
-							<form action="#">
-								<input type="text" placeholder="Usuario" id="registoUsuario"></input>
-								
-								<input type="password" placeholder="Contraseña" id="registoContra"></input>
-								
-								<input type="email" placeholder="Correo Electrónico" id="correo"></input>
-								
-								<input type="text" placeholder="Teléfono"></input>
-								
-								<input type="submit" value="Registrarse"  id="botonRegistro"></input>
-							</form>
-						</div>
-						<div class="reset-password">
-							<a href="#" style="color: white">¿Olvidé mi Contraseña?</a>
-						</div>
+						<input type="email" placeholder="Correo Electrónico" id="correo"></input>
+						
+						<input type="text" placeholder="Teléfono"></input>
+						
+						<input type="submit" value="Registrarse"  id="botonRegistro"></input>
+					</form>
+				</div>
+				<div class="reset-password">
+					<a href="#" style="color: white">¿Olvidé mi Contraseña?</a>
+				</div>
 
-						
-					</div>			
-					
-					
-			
-					
+				
+			</div>								
 		</body>
 </html>
