@@ -15,7 +15,7 @@ import edu.eci.cvds.excepciones.ECILabExcepcion;
 //import com.registerLab.DAO.EquipoDAO;
 //import com.registerLab.DAO.LaboratorioDAO;
 //import com.registerLab.DAO.NovedadDAO;
-//import com.registerLab.DAO.UsuarioDAO;
+import edu.eci.cvds.DAO.UsuarioDAO;
 //import com.registerLab.entities.Elemento;
 //import com.registerLab.entities.Equipo;
 //import com.registerLab.entities.Laboratorio;
@@ -24,8 +24,8 @@ import edu.eci.cvds.entities.Usuario;
 
 public  class ServiciosECILabImpl implements ServiciosECILab
 {
-	//@Inject
-	//private UsuarioDAO usuario;
+	@Inject
+	private UsuarioDAO usuario;
 	//@Inject
 	//private EquipoDAO equipo;
 	//@Inject
@@ -40,9 +40,9 @@ public  class ServiciosECILabImpl implements ServiciosECILab
 	 * @param correo - correo del usuario a buscar
 	 * @return devuelve el Usuario correspondiente al correo
 	 */
-	//public Usuario getUsuario(String correo) 
-	//{
-		//return usuario.getUsuario(correo);
-	//}
+	public Usuario getUsuario(String correo) 
+	{
+		return usuario.getUsuario(correo);
+	}
 	
 }

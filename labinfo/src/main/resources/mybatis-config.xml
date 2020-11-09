@@ -20,8 +20,8 @@
                 <property name="driver" value="${driver}" />
                 <!--property name="url" value="jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/bdprueba"/!-->
                 <property name="url" value="jdbc:postgresql://ec2-23-20-70-32.compute-1.amazonaws.com:5432/decigqpg9tb8ia"/>
-                <property name="username" value="username" />
-                <property name="password" value="password" />
+                <property name="username" value="qcwmpnwwywpfsk" />
+                <property name="password" value="c463dede95cbc843ce3298e4af86da6d9286578e8f0a07f93e52967845948c30" />
 
                 <!--property name="url" value="jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/bdprueba"/!-->
             </dataSource>
