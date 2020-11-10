@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+		
+		<head>
+			<title>Labinfo</title>
+			<link rel = "stylesheet" href = "inicioSesion.css"/>
+		</head>
+		<body>
+			<form action = "" method = "post">
+				<div id = "Cabecera">Laboratorio de infomática</div>
+				<div id = "Cuerpo">
+					<div id = "LateralIzquierdo">
+						Bienvenido al registro del laboratorio.
+						<br></br>
+						En este sistema podrás revisar los distintos equipos disponibles en el laboratorio.
+					</div>
+					<div id = "LateralDerecho">
+						Iniciar Sesión
+						<br></br>
+						Correo
+						<br></br>
+						<p:inputText id = "Correo" type = "long" value="" />
+						<br></br>
+						Contraseña
+						<br></br>
+						<input type="password" name="contrasena" value="" />
+						<br></br>
+						<input type="submit" value="Iniciar Sesión" actionListener="#{InicioSesion.iniciarSesion()}"/>
+					</div>
+				</div>
+				<div id = "Pie">Pie</div>
+			</form>
+		</body>
+</html>
